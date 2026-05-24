@@ -1,3 +1,12 @@
 /home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/app/Application.java
+/home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/client/Client.java
+/home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/client/Device.java
+/home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/client/gps_reciver.java
+/home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/client/reliever.java
 /home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/resource/AliveResource.java
 /home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/server/CockpitServer.java
+/home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/util/DTOClient.java
+/home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/util/DTORequest.java
+/home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/util/DTOResource.java
+/home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/util/DTOResponse.java
+/home/sonotorious/workplace/smart-ambulance-coap/src/main/java/com/ambulance/util/DTOServer.java

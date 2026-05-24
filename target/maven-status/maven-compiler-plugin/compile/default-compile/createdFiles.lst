@@ -1,3 +1,10 @@
-com/ambulance/resource/AliveResource.class
 com/ambulance/server/CockpitServer.class
 com/ambulance/app/Application.class
+com/ambulance/util/DTORequest.class
+com/ambulance/resource/AliveResource.class
+com/ambulance/util/DTOClient.class
+com/ambulance/client/Device.class
+com/ambulance/util/DTOResource.class
+com/ambulance/util/DTOResponse.class
+com/ambulance/util/DTOServer.class
+com/ambulance/client/Client.class
