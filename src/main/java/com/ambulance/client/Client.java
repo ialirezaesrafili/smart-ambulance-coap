@@ -9,6 +9,13 @@ public abstract class Client {
     protected Device device;
     protected CoapClient client;
 
+    // Constructor
+    public Client(Device device, CoapClient client) {
+        this.device = device;
+        this.client = client;
+    }
+
+
     // Abstract methods
     public abstract CoapClient getClient();
 
