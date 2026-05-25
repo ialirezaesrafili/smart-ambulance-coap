@@ -1,10 +1,11 @@
 package com.ambulance.client;
+
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResponse;
 
-public class CoapClient extends Client {
+public class CoapCli extends Client {
 
-    public Reliever(Device device) {
+    public CoapCli(Device device) {
 
         // Create CoAP client using device URI
         super(device, new CoapClient(device.getUri()));
@@ -17,17 +18,10 @@ public class CoapClient extends Client {
 
     @Override
     public void setDevice(Device device) {
-
         this.device = device;
-
-        // Rebuild client with new URI
         this.client = new CoapClient(device.getUri());
     }
 
-    @Override
-    public void setClient(org.eclipse.californium.core.CoapClient client) {
-        
-    }
 
     @Override
     public void setClient(CoapClient client) {
