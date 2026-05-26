@@ -1,17 +1,16 @@
 package com.ambulance.client;
 
+/**
+ * Describes a reachable CoAP resource endpoint.
+ */
 public class Device {
+
     private String deviceId;
     private String ipAddress;
     private int port;
-    private String resource;
+    private String resource;      // e.g., "temp", "ac", "hmi"
 
-    public Device(
-            String deviceId,
-            String ipAddress,
-            int port,
-            String resource) {
-
+    public Device(String deviceId, String ipAddress, int port, String resource) {
         this.deviceId = deviceId;
         this.ipAddress = ipAddress;
         this.port = port;
@@ -50,22 +49,15 @@ public class Device {
         this.resource = resource;
     }
 
+    /**
+     * Full CoAP URI: coap://ip:port/resource
+     */
     public String getUri() {
-        return "coap://" +
-                ipAddress +
-                ":" +
-                port +
-                "/" +
-                resource;
+        return "coap://" + ipAddress + ":" + port + "/" + resource;
     }
 
     @Override
     public String toString() {
-        return "Device{" +
-                "deviceId='" + deviceId + '\'' +
-                ", ipAddress='" + ipAddress + '\'' +
-                ", port=" + port +
-                ", resource='" + resource + '\'' +
-                '}';
+        return String.format("[%s] %s", deviceId, getUri());
     }
 }
