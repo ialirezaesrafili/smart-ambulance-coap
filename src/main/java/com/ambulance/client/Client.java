@@ -1,53 +1,115 @@
 package com.ambulance.client;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.eclipse.californium.core.CoapClient;
+import org.eclipse.californium.core.CoapResponse;
+import org.eclipse.californium.core.coap.MediaTypeRegistry;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+/**
+ * Abstract client representing an actor in the ambulance system.
+ * Provides common CoAP operations and JSON payload building.
+ */
 public abstract class Client {
 
-    protected Device device;
-    protected CoapClient client;
+    protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    // Constructor
-    public Client(Device device, CoapClient client) {
+    protected final String role;        // "driver", "reliever", "gps"
+    protected Device device;
+    protected CoapClient coapClient;
+
+    public Client(String role, Device device) {
+        this.role = role;
         this.device = device;
-        this.client = client;
+        this.coapClient = new CoapClient(device.getUri());
     }
 
+    // -------------------------------------------------------------------
+    // CoAP primitive operations
+    // -------------------------------------------------------------------
 
-    // Abstract methods
-    public abstract CoapClient getClient();
+    /**
+     * Perform a GET and return the response text, or null on failure.
+     */
+    public String get() {
+        try {
+            CoapResponse response = coapClient.get();
+            if (response != null && response.isSuccess()) {
+                return response.getResponseText();
+            }
+            log.warn("GET {} failed: {}", device.getUri(),
+                    response != null ? response.getCode() : "no response");
+        } catch (Exception e) {
+            log.error("GET {} exception: {}", device.getUri(), e.getMessage());
+        }
+        return null;
+    }
 
-    public abstract void setDevice(Device device);
+    /**
+     * Perform a PUT with a JSON payload string. Returns the response text or null.
+     */
+    public String put(String jsonPayload) {
+        try {
+            CoapResponse response = coapClient.put(jsonPayload, MediaTypeRegistry.APPLICATION_JSON);
+            if (response != null && response.isSuccess()) {
+                return response.getResponseText();
+            }
+            log.warn("PUT {} failed: {} (payload: {})", device.getUri(),
+                    response != null ? response.getCode() : "no response", jsonPayload);
+        } catch (Exception e) {
+            log.error("PUT {} exception: {}", device.getUri(), e.getMessage());
+        }
+        return null;
+    }
 
-    public abstract void setClient(CoapClient client);
+    /**
+     * Convenience method to add the "role" field to any JSON object.
+     */
+    protected JSONObject baseJson() {
+        JSONObject json = new JSONObject();
+        json.put("role", role);
+        return json;
+    }
 
-    public abstract String connect();
+    // -------------------------------------------------------------------
+    // Lifecycle helpers (optional)
+    // -------------------------------------------------------------------
 
-    public abstract String disconnect();
+    public String connect() {
+        // CoAP is connectionless, but we can test reachability with a GET
+        String result = get();
+        return (result != null) ? "Connected to " + device.getUri() : "Connection failed";
+    }
 
-    // Common JSON method
-    public ObjectNode toJson(String data) {
+    public String disconnect() {
+        coapClient.shutdown();
+        return "Disconnected";
+    }
 
-        ObjectMapper mapper = new ObjectMapper();
+    // -------------------------------------------------------------------
+    // Getters / Setters
+    // -------------------------------------------------------------------
 
-        ObjectNode root = mapper.createObjectNode();
+    public String getRole() {
+        return role;
+    }
 
-        root.put("deviceId",
-                device.getDeviceId());
+    public Device getDevice() {
+        return device;
+    }
 
-        root.put("ipAddress",
-                device.getIpAddress());
+    public void setDevice(Device device) {
+        this.device = device;
+        this.coapClient = new CoapClient(device.getUri());
+    }
 
-        root.put("port",
-                device.getPort());
+    public CoapClient getCoapClient() {
+        return coapClient;
+    }
 
-        root.put("resource",
-                device.getResource());
-
-        root.put("data", data);
-
-        return root;
+    @Override
+    public String toString() {
+        return role + " -> " + device;
     }
 }
