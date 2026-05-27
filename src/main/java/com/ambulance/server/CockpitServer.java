@@ -35,11 +35,9 @@ public class CockpitServer extends BaseAmbulanceServer {
 
     /**
      * Registers the three CoAP resources for the cockpit:
-     * <ul>
-     *   <li><code>/temp</code> – temperature sensor</li>
-     *   <li><code>/ac</code> – air‑conditioning controller</li>
-     *   <li><code>/hmi</code> – human‑machine interface</li>
-     * </ul>
+     *   /temp – temperature sensor
+     *   /ac – air‑conditioning controller
+     *   /hmi – human‑machine interface
      */
     @Override
     protected void registerResources() {
