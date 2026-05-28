@@ -176,7 +176,22 @@ formatted JSON responses (via `JsonCliRenderer`).
 
 ---
 
-## Usage
+# Getting the Code
+
+### Clone the repository (replace the URL with your actual repo):
+
+  ```shell
+  git clone https://github.com/ialirezaesrafili/smart-ambulance-coap.git
+  cd smart-ambulance-coap
+  ```  
+
+### Building the Project
+
+```shell
+mvn clean compile
+```
+
+## Recommendation
 
 ### Start the Application
 
@@ -184,3 +199,4 @@ The project includes a convenience shell script `run.sh` that cleans, compiles, 
 
 ```bash
 ./run.sh
+```
