@@ -2,10 +2,8 @@ package com.ambulance.coordinator;
 
 import com.ambulance.client.Device;
 import com.ambulance.client.GpsClient;
+import com.ambulance.util.JsonCliRenderer;
 
-/**
- * Orchestrates GPS updates to both HMIs simultaneously.
- */
 public class GpsCoordinator {
 
     private final GpsClient cockpitHmi;
@@ -17,14 +15,13 @@ public class GpsCoordinator {
         rearCabinHmi = new GpsClient(new Device("gps-hmi-AR", rearCabinHost, rearCabinPort, "hmi"));
     }
 
-    /**
-     * Updates GPS coordinates on both HMIs.
-     */
     public void updateGpsBoth(String gpsCoordinates) {
         System.out.println("[GPS] Updating coordinates to: " + gpsCoordinates);
         String resAc = cockpitHmi.updateGps(gpsCoordinates);
         String resAr = rearCabinHmi.updateGps(gpsCoordinates);
-        System.out.println("  Cockpit HMI: " + resAc);
-        System.out.println("  RearCabin HMI: " + resAr);
+        System.out.print("  Cockpit HMI: ");
+        JsonCliRenderer.render(resAc);
+        System.out.print("  RearCabin HMI: ");
+        JsonCliRenderer.render(resAr);
     }
 }

@@ -14,11 +14,9 @@ import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Abstract base for any ambulance cabin CoAP server.
- * <p>
  * Holds the Californium {@link CoapServer}, the cabin type, and a
  * thread-safe {@link ServerState}. Subclasses must implement
  * {@link #registerResources()} to add their specific resources.
- * </p>
  */
 public abstract class BaseAmbulanceServer {
 

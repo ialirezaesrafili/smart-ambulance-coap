@@ -31,6 +31,12 @@
             <version>${californium.version}</version>
         </dependency>
 
+        <!-- SLF4J Simple binding (removes warning, logs to stderr) -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.7</version>
+        </dependency>
         <!-- Jackson for JSON parsing (used in resources) -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -38,7 +44,7 @@
             <version>${jackson.version}</version>
         </dependency>
 
-        <!-- Optionally keep Gson if you prefer it; both are fine -->
+        <!-- Gson (alternative JSON library) -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
@@ -51,11 +57,25 @@
             <artifactId>json</artifactId>
             <version>20230227</version>
         </dependency>
+
+        <!-- Jansi for colored terminal output -->
+        <dependency>
+            <groupId>org.fusesource.jansi</groupId>
+            <artifactId>jansi</artifactId>
+            <version>2.4.1</version>
+        </dependency>
+
+        <!-- Lanterna for future TUI (optional) -->
+        <dependency>
+            <groupId>com.googlecode.lanterna</groupId>
+            <artifactId>lanterna</artifactId>
+            <version>3.1.2</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Maven Compiler Plugin (ensure Java 17) -->
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -66,7 +86,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Maven Exec Plugin: run the main class with "mvn exec:java" -->
+            <!-- Maven Exec Plugin: run the main class -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -76,7 +96,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Maven Shade Plugin: create a fat JAR for easy execution -->
+            <!-- Maven Shade Plugin: create a fat JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
