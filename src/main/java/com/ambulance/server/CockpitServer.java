@@ -7,10 +7,8 @@ import com.ambulance.resource.HmiResource;
 
 /**
  * CoAP server for the ambulance cockpit (AC).
- * <p>
  * Hosts the three mandatory resources: temperature sensor (ST),
  * air‑conditioning controller (SA), and the HMI (SH).
- * </p>
  */
 public class CockpitServer extends BaseAmbulanceServer {
 
@@ -35,11 +33,9 @@ public class CockpitServer extends BaseAmbulanceServer {
 
     /**
      * Registers the three CoAP resources for the cockpit:
-     * <ul>
-     *   <li><code>/temp</code> – temperature sensor</li>
-     *   <li><code>/ac</code> – air‑conditioning controller</li>
-     *   <li><code>/hmi</code> – human‑machine interface</li>
-     * </ul>
+     * /temp – temperature sensor
+     * /ac – air‑conditioning controller
+     * /hmi – human‑machine interface
      */
     @Override
     protected void registerResources() {

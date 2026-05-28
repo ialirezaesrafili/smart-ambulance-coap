@@ -13,9 +13,8 @@ com/ambulance/resource/AirConditioningResource.class
 com/ambulance/resource/TemperatureSensorResource.class
 com/ambulance/client/RelieverClient.class
 com/ambulance/resource/HmiResource.class
-com/ambulance/core/ServerConfig.class
 com/ambulance/client/Device.class
-com/ambulance/core/ResourceRegistry.class
+com/ambulance/util/JsonCliRenderer.class
 com/ambulance/enums/ServerState.class
 com/ambulance/client/Client.class
 com/ambulance/enums/CabinType.class
