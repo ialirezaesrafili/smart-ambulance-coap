@@ -141,3 +141,46 @@ Detailed technical documentation for each component is available in the `docs/` 
 
 The architecture diagram is also available:
 ![IoT Architecture](docs/iot_diagram.png)
+
+# Application.java – Main Entry Point & Simulation Orchestrator
+
+## Overview
+
+`Application` is the single entry point for the **Smart Ambulance CoAP Simulation**.  
+It starts the two cabin CoAP servers (Cockpit and Rear Cabin) once, then presents an interactive coloured menu that
+allows the user to:
+
+- **Run an automatic demonstration** – a 5‑phase emergency scenario that exercises all roles, resources, and access
+  controls.
+- **Enter manual mode** – an interactive CoAP request builder that lets the user send `GET`/`PUT` requests to any
+  resource (temperature, air‑conditioning, HMI) with custom payloads.
+- **Exit** the application.
+
+All terminal output is enhanced with **Jansi** for colour‑coded role tags, section headers, success/error messages, and
+formatted JSON responses (via `JsonCliRenderer`).
+
+**Location:** `com.ambulance.app.Application`
+
+---
+
+## Responsibilities
+
+- Initialise Jansi console colours.
+- Create and start both `CockpitServer` and `RearCabinServer` once.
+- Display a main menu loop (`1 = auto`, `2 = manual`, `0 = exit`) and delegate to the appropriate mode.
+- In **automatic mode**, run a pre‑scripted sequence of CoAP requests using the three coordinators (`DriverCoordinator`,
+  `RelieverCoordinator`, `GpsCoordinator`), simulating a realistic emergency response.
+- In **manual mode**, provide a sub‑menu for selecting a cabin, resource, and operation, then build and send a CoAP
+  request and display the coloured JSON response.
+- Handle input errors gracefully and loop back to menus until the user chooses to exit.
+
+---
+
+## Usage
+
+### Start the Application
+
+The project includes a convenience shell script `run.sh` that cleans, compiles, and launches the application:
+
+```bash
+./run.sh
