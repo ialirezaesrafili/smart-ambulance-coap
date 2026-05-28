@@ -1,123 +1,66 @@
-# Requirements
+# Requirements & Setup
 
-Before running the project, install:
+## Prerequisites
 
-* Java 17+
-* Maven 3+
-* Git
+Before running the project, make sure the following are installed on your system:
+
+* **Java 17** (or newer)
+* **Maven 3.6+**
+* **Git** (optional – for cloning the repository)
+
+All other dependencies (Californium, Jackson, Jansi, etc.) are automatically downloaded by Maven during the build.
 
 ---
 
-# Installation
+## Installation by Operating System
 
-## Linux (Arch / Ubuntu / Debian)
+### Linux (Arch / Ubuntu / Debian)
 
-### Install dependencies
+**Install dependencies**
 
-**Arch Linux:**
+Arch Linux:
 
 ```bash
 sudo pacman -S jdk17-openjdk maven git
 ```
 
-**Ubuntu / Debian:**
-
-```bash
-sudo apt update
-sudo apt install openjdk-17-jdk maven git -y
-```
-
-### Verify installation
-
-```bash
+### Verify
+```shell
 java -version
 mvn -version
 ```
-
 ---
+### Windows
 
-## Windows
+1) Install Java 17 JDK – download from Adoptium
+2) Install Maven – download from Apache Maven
+3) Install Git – download from Git SCM
 
-### Install manually:
+### Verify
 
-1. Install Java 17 (JDK)
-
-    * Download: https://adoptium.net/
-2. Install Maven
-
-    * Download: https://maven.apache.org/download.cgi
-3. Install Git
-
-    * Download: https://git-scm.com/downloads
-
-### Verify in Command Prompt / PowerShell:
-
-```bash
+```shell
 java -version
 mvn -version
 git --version
 ```
-
 ---
+### MacOS
 
-## macOS
-
-### Install using Homebrew:
-
-```bash
+```shell
 brew install openjdk@17 maven git
 ```
 
-### Set Java (if needed):
-
-```bash
+### If Java is not automatically in your PATH:
+```shell
 echo 'export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 ```
 
-### Verify installation:
+### Verify
 
-```bash
+```shell
 java -version
 mvn -version
 git --version
 ```
 
----
-
-# Clone Project
-
-```bash
-git clone https://github.com/ialirezaesrafili/internet-of-thing-lab.git
-cd internet-of-thing-lab
-```
-
----
-
-# Build Project
-
-```bash
-mvn clean compile
-```
-
----
-
-# Run Project
-
-```bash
-mvn exec:java -Dexec.mainClass="com.lab.iot.app.Application"
-```
-
----
-
-# Package Project
-
-```bash
-mvn package
-```
-
-Run JAR:
-
-```bash
-java -jar target/internet-of-thing-lab-1.0.0.jar
-```
