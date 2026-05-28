@@ -140,7 +140,7 @@ Detailed technical documentation for each component is available in the `docs/` 
 | [CoAP API Testing](docs/coap_endpoints.md) | Endpoint reference and test commands (if present)                                            |
 
 The architecture diagram is also available:
-![IoT Architecture](docs/iot_diagram.png)
+![IoT Architecture](docs/diagram.png)
 
 # Application.java – Main Entry Point & Simulation Orchestrator
 
