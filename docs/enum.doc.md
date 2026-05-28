@@ -1,3 +1,5 @@
+# Enums
+
 # ServerState
 
 **Package:** `com.ambulance.enums`  
@@ -164,5 +166,5 @@ The enum provides a human‑readable display name, a compact short code matching
 The short codes (`AC` = Ambulance Cockpit, `AR` = Ambulance Rear) are fixed and correspond to the project’s naming
 convention. They are useful for forming unique resource paths or server identifiers.
 
----
+
 
